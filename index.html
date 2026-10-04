@@ -12,8 +12,19 @@
 </head>
 <body>
     <div class="app-container-full">
+        <!-- Barra de Navegación Superior -->
+        <nav class="top-nav" aria-label="Navegación principal">
+            <a href="#inicio" class="nav-brand">AhorraP</a>
+            <div class="nav-links">
+                <a href="#acerca">Conócenos</a>
+                <a href="#conectar">Probar</a>
+                <a href="#ahorrap">AhorraP</a>
+                <a href="#contacto" class="nav-cta">Contáctanos</a>
+            </div>
+        </nav>
+
         <!-- Cabecera -->
-        <header class="app-header">
+        <header class="app-header" id="inicio">
             <div class="title-with-icon">
                 <img src="arcticons--52-weeks-money-challenge.svg" alt="Icono AhorraP" class="app-icon">
                 <h1>AhorraP</h1>
@@ -23,7 +34,7 @@
         </header>
 
         <!-- Sección de Video Explicativo -->
-        <section class="video-section">
+        <section class="video-section" id="video">
             <h2>¿POR QUÉ ES IMPORTANTE AHORRAR?</h2>
             <div class="video-container">
                 <iframe width="100%" height="480" src="https://www.youtube.com/embed/IzQgef5FA5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -31,7 +42,7 @@
         </section>
 
         <!-- Descripción detallada: ¿Qué es AhorraP? -->
-        <section class="about-section">
+        <section class="about-section" id="acerca">
             <h2>¿QUÉ ES AHORRAP?</h2>
             <p class="subtitle-about">La solución financiera inteligente para peruanos con ingresos variables</p>
             <div class="about-content">
@@ -41,7 +52,7 @@
         </section>
 
         <!-- Panel de Configuración del ID de Google Sheets -->
-        <section class="config-section">
+        <section class="config-section" id="conectar">
             <div class="card">
                 <h2>CONECTAR GOOGLE SHEETS</h2>
                 <p>Ingresa el ID de tu hoja de cálculo configurada para visualizar tus movimientos financieros.</p>
@@ -69,7 +80,7 @@
         </main>
 
         <!-- TABLA DE MOVIMIENTOS REGISTRADOS -->
-        <section class="table-section">
+        <section class="table-section" id="movimientos">
             <h2>MOVIMIENTOS REGISTRADOS</h2>
             <div class="table-responsive">
                 <table>
@@ -91,7 +102,7 @@
         </section>
 
         <!-- Sección de Capturas de Pantalla con Texto Descriptivo al Costado -->
-        <section class="features-showcase">
+        <section class="features-showcase" id="ahorrap">
             <h2>CONOCE LA INTERFAZ DE AHORRAP</h2>
 
             <!-- Fila 1 -->
@@ -120,7 +131,7 @@
         </section>
 
         <!-- Formulario (Modo Demostración Honesto) -->
-        <section class="info-form-section">
+        <section class="info-form-section" id="contacto">
             <div class="card">
                 <h2>¿QUIERES RECIBIR MAYOR INFORMACIÓN?</h2>
                 <p>Formulario en modo demostración para el prototipo académico de <strong>AhorraP</strong>.</p>
