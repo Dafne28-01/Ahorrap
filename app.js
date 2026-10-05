@@ -7,10 +7,10 @@ function conectarHoja() {
         return;
     }
 
-    // URL oficial de la API de Google Sheets en formato JSON
+    // URL de la API pública de Google Sheets en formato JSON (compatible con HTTPS de GitHub Pages)
     const apiUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
 
-    tbody.innerHTML = `<tr><td colspan="4" class="text-center">Conectando con Google Sheets...</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="4" class="text-center">Conectando con Google Sheets desde GitHub...</td></tr>`;
 
     fetch(apiUrl)
         .then(response => {
@@ -20,14 +20,14 @@ function conectarHoja() {
             return response.text();
         })
         .then(text => {
-            // Limpiamos la respuesta que devuelve Google (viene envuelta en una función gviz)
+            // Limpiamos la respuesta que devuelve Google
             const jsonString = text.substring(47, text.length - 2);
             const json = JSON.parse(jsonString);
             procesarDatosJSON(json);
         })
         .catch(error => {
             console.error(error);
-            tbody.innerHTML = `<tr><td colspan="4" class="text-center" style="color: #d9534f;">Error al conectar. Asegúrate de que la hoja sea pública ("Cualquier persona con el enlace").</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" class="text-center" style="color: #d9534f;">Error al conectar. Verifica que la hoja sea pública ("Cualquier persona con el enlace").</td></tr>`;
         });
 }
 
@@ -44,17 +44,15 @@ function procesarDatosJSON(json) {
     let totalGastos = 0;
     let htmlTabla = '';
 
-    // Recorremos las filas de la hoja (saltando la primera si es cabecera, o adaptándose)
     for (let i = 0; i < filas.length; i++) {
         const celdas = filas[i].c;
         
-        // Verificamos que al menos existan las columnas principales
         if (celdas && celdas.length >= 4) {
             const fecha = celdas[0] ? (celdas[0].f || celdas[0].v || '') : '';
             const categoria = celdas[1] ? (celdas[1].v || '') : '';
             const medio = celdas[2] ? (celdas[2].v || '') : '';
             
-            // Si es la fila de encabezados (por ejemplo dice "Fecha" o "Monto"), la saltamos
+            // Salta la fila de encabezados si los tuviera
             if (i === 0 && (String(fecha).toLowerCase().includes('fecha') || String(categoria).toLowerCase().includes('categor'))) {
                 continue;
             }
@@ -83,7 +81,7 @@ function procesarDatosJSON(json) {
 
     const balance = totalIngresos - totalGastos;
 
-    // Actualiza los indicadores del Dashboard
+    // Actualiza los indicadores del Dashboard en la web
     document.getElementById('totalIngresos').textContent = `S/ ${totalIngresos.toFixed(2)}`;
     document.getElementById('totalGastos').textContent = `S/ ${totalGastos.toFixed(2)}`;
     document.getElementById('balanceActual').textContent = `S/ ${balance.toFixed(2)}`;
